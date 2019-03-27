@@ -1,0 +1,239 @@
+<ul class="nav nav-tabs" id="dice-nav-tabs">
+    {{#tabs}}
+        <li class="nav-item{{#active}} active{{/active}}{{^show}} hidden{{/show}}">
+            <a class="nav-link" data-toggle="tab" href="#{{id}}" id="tab-{{{id}}}">{{{title}}}</a>
+        </li>
+    {{/tabs}}
+</ul>
+
+<div class="tab-content">
+    <div id="home" class="tab-pane fade active show">
+        <div id="intro-inner">
+            <div class="tab-header">
+                <div class="header-icon">
+                    <img title="Lock icon" src="{{{Config.imageroot}}}/Bitcoin.svg" title="Lock">
+                </div>
+                <div class="header-text">
+                    <p>Here you can create a <b>bitcoin wallet</b>.
+                        You can use it for development, as an offline wallet, or import on another device.</p>
+                    <!-- <div class="helpicon" data-toggle="modal" data-target="#modal-privatekeys">?</div> -->
+                    <p>To protect your wallet, you need 12 random words. These act a bit like a password.  Set up your wallet with your 12 words below.</p>
+                </div>
+            </div>
+            <div class="container mt-3 mb-3">
+                <div class="text-center"><h4>Choose your setup method</h4></div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="entropy-source-chooser-outer config-chooser" data-key="entropy-source" data-value="dice">
+                            <img src="{{{Config.imageroot}}}/dice-solid.svg" title="Dice">
+                            <button class="btn btn-outline-primary">Use dice</button>
+                            <div class="text-center">
+                                Roll a physical dice a few times. Enter your results and we will convert them into seed
+                                words using a mathematical formula. This ensures randomness and makes them very hard to guess.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="entropy-source-chooser-outer config-chooser" data-key="entropy-source" data-value="generate">
+                            <img src="{{{Config.imageroot}}}/robot-solid.svg" title="Robot">
+                            <button class="btn btn-outline-primary">Automatic</button>
+                            <div class="text-center">
+                                We can generate random seed words for you, using computer code.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="entropy-source-chooser-outer config-chooser" data-key="entropy-source" data-value="import">
+                            <img src="{{{Config.imageroot}}}/edit-regular.svg" title="Pencil">
+                            <button class="btn btn-outline-primary">Import</button>
+                            <div class="text-center">
+                                If you already have seed words, enter them and we will analyse your wallet.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="text-center">
+                <button class="btn btn-outline-danger hidden" id="reset">Reset Wallet</button>
+            </div>
+        </div>
+    </div>
+    <div id="dice" class="tab-pane fade">
+        <p></p>
+        <div id="dice-sides-chooser" class="config-chooser-outer">
+            <div class="helpicon" data-toggle="modal" data-target="#modal-dicesides">?</div>
+            <p>How many sides do your dice have?</p>
+            <div class="text-center" id="pick-dice-sides">
+                <button class="btn btn-outline-primary config-chooser" data-key="dice-sides" data-value="6">6 sides</button>
+                <button class="btn btn-outline-primary config-chooser" data-key="dice-sides" data-value="16">16 sides</button>
+                <button class="btn btn-outline-primary config-chooser" data-key="dice-sides" data-value="20">20 sides</button>
+            </div>
+        </div>
+        <div id="bits-entropy-chooser" class="config-chooser-outer" style="display: none;">
+            <div class="helpicon" data-toggle="modal" data-target="#modal-bitsentropy">?</div>
+            <p>How many random words ("seed words") do you want? (12 is most popular)</p>
+            <div class="text-center" id="pick-entropy">
+                <button class="btn btn-outline-primary config-chooser" data-key="bits-entropy" data-value="128">12
+                    words
+                </button>
+                <button class="btn btn-outline-secondary config-chooser" data-key="bits-entropy" data-value="256">24
+                    words
+                </button>
+            </div>
+        </div>
+        <div id="dice-roller" style="display: none;">
+            <div id="dice-roller-head">
+                <p>Roll your dice<span id="dice-throws-required"></span>. Press the correct button below to record each
+                    number rolled. We will keep a list.</p>
+                <div class="helpicon" data-toggle="modal" data-target="#modal-dicerolls">?</div>
+                <div id="throw-dice-buttons"></div>
+                <div id="progress-bar-outer">
+                    <span>Progress:</span> <span id="progress-percent"></span>
+                    <div id="progress-bar"></div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <div id="dice-throws-outer">
+                <div class="title">Dice Rolls</div>
+                <div>
+                    <span id="dice-throws"></span>
+                    <img title="Delete last roll" class="icon hidden" id="dice-throw-backspace"
+                         src="{{{Config.imageroot}}}/backspace-solid.svg" title="Backspace">
+                </div>
+            </div>
+            <div id="dice-roller-complete" class="hidden">
+                <div id="completion-check" class="mt-5">
+                    <img src="{{{Config.imageroot}}}/check-circle-o.svg" title="Check circle">
+                    <div>
+                        <h4>Dice rolls complete!</h4>
+                        <p>Your wallet seed words are shown on the next tab.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="seed-words" class="tab-pane fade">
+        <div id="hd-seed-outer">
+            <div class="tab-header">
+                <div class="header-icon">
+                    <img title="Lock icon" src="{{{Config.imageroot}}}/lock.svg" title="Lock">
+                </div>
+                <div class="header-text">
+                    <h3>Secret seed words</h3>
+                    <p>Use these words to import your wallet to another device.</p>
+                </div>
+            </div>
+            <div class="text-center">
+            <p>Keep these words secret. Write them down on a piece of paper. Do not store them on a device connected to the internet. The order of the words is important.</p>
+          </div>
+            <div id="seed-words-outer" class="text-center">
+                <!-- <div id="seed-words-number-list"></div> -->
+                <div id="seed-words-inner" class="highlight"></div>
+            </div>
+        </div>
+    </div>
+    <div id="import-seed-words" class="tab-pane fade">
+        <div class="tab-header">
+            <div class="header-icon">
+                <img title="Lock icon" src="{{{Config.imageroot}}}/keyboard-regular.svg" title="Keyboard">
+            </div>
+            <div class="header-text">
+                <h3>Import words</h3>
+                <p>Add your seed words here to validate and import your wallet.</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <textarea rows="3" cols="60" id="imported-words" placeholder="Enter words here"></textarea>
+            <div>
+                <button class="btn btn-outline-success" id="validate-words">Import</button>
+            </div>
+        </div>
+        <div class="text-center">
+        <div><small>(Developers - this field will also private key WIF, or binary entropy 128 / 256 bits)</small></div>
+        <div><small id="word-count"></small></div>
+      </div>
+    </div>
+    <div id="receive-addresses" class="tab-pane fade">
+        <div class="tab-header">
+            <div class="header-icon">
+                <img title="Lock icon" src="{{{Config.imageroot}}}/money.svg" title="Money">
+            </div>
+            <div class="header-text">
+                <h3>Receive addresses</h3>
+                <p>Use these addresses to receive money into your wallet. They are all accessible using your secret words.</p>
+            </div>
+        </div>
+
+        <div id="receive-address-inner">
+            <div class="card">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <canvas id="receive-address-qr"></canvas>
+                        </div>
+                        <div class="col-8">
+                            <p></p>
+                            <p>
+                                <strong>Public address: </strong><span id="receive-address-text"></span>
+                                <p><small>(You can give this to people who need to pay you)</small></p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <p>
+              <a class="btn btn-outline-primary" id="next-address" href="#" >Next address</a>
+              <a class="btn btn-outline-primary" id="view-balance" href="" title="External link to block explorer" target="_blank">Balance and history</a>
+              <a class="btn btn-outline-danger" data-toggle="collapse" href="#hd-private-key" role="button"
+                 aria-expanded="false" aria-controls="collapseExample">
+                  Show/hide private key
+              </a>
+            </p>
+            <div id="address-number-outer" style="display: none;">Address: <span id="address-number"></span></div>
+            <p>
+
+            </p>
+            <div class="card collapse" id="hd-private-key">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <canvas id="private-key-qr"></canvas>
+                        </div>
+                        <div class="col-8 can-wrap">
+                            <p></p>
+                            <p>
+                                <strong>Private key: </strong>
+                                <small><span id="private-key-text"></span></small>
+                                <p><small>(Always keep this secret)</small></p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="technical" class="tab-pane fade">
+        <div class="tab-header">
+            <div class="header-icon">
+                <img title="Lock icon" src="{{{Config.imageroot}}}/code-solid.svg" title="Code symbol">
+            </div>
+            <div class="header-text">
+                <h3>Techical details</h3>
+                <p>For advanced users only. You need not keep these details if you are keeping the seed words. Do not let anyone see this page. They could empty your wallet.</p>
+            </div>
+        </div>
+        <div id="technical-outer" class="small-font mt-5">
+        </div>
+    </div>
+</div>
+
+{{#modals}}
+    {{>modal}}
+{{/modals}}
+{{> modalhelp-dicerolls}}
+{{> modalhelp-dicesides}}
+{{> modalhelp-bitsentopy}}

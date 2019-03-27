@@ -1,0 +1,32 @@
+<!doctype html>
+<HTML lang="en">
+  <HEAD>
+      <title>Bitcoin</title>
+      <meta charset="utf-8">
+      <link href="{{{Config.wwwroot}}}/css/index.css" rel="stylesheet">
+      <script src="{{{Config.wwwroot}}}/bundle.js"></script>
+      <link href="{{{Config.wwwroot}}}/bootstrap.min.css" rel="stylesheet">
+      <link rel="shortcut icon" href="{{{Config.imageroot}}}/favicon.ico" />
+  </HEAD>
+
+  <BODY>
+      <header class="nav navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+          <a class="navbar-brand mr-0 mr-md-2 show-nav-link-home" href="#" aria-label="Bitcoin Wallet Generator">
+              <img src="{{{Config.imageroot}}}/bsv_logo.png" title="Bitcoin logo">
+              <span class="sitename">{{{sitename}}}</span>
+          </a>
+          <ul class="navbar-nav bd-navbar-nav flex-row">
+          {{#navitems}}
+            <li class="nav-item">
+              <a class="nav-link show-page-link" data-page="{{id}}" href="{{url}}">{{{title}}}</a>
+            </li>
+          {{/navitems}}
+          </ul>
+      </header>
+      <div class="main-content">
+        <div class="page" id="page-app">{{>page1}}</div>
+        <div class="page" id="page-links" style="display: none;">{{>links}}</div>
+        <div class="page" id="page-faqs" style="display: none;">{{>faqs}}</div>
+      </div>
+  </BODY>
+</HTML>

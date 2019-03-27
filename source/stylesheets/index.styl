@@ -1,0 +1,303 @@
+themecolour1 = #654693
+themecolour2 = #654693
+dicerolls = #EDAC4A
+dicerollfont = #fff
+fontcolour = #444
+hovercolour = rgb(242, 240, 249)
+progressgreen = #67ad5a
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url('/bitcoin/fonts/Roboto-Regular.ttf');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body
+  font-family 'Roboto','Helvetica Neue',Helvetica,Arial,sans-serif
+
+*
+  margin 0
+  padding 0
+  box-sizing border-box
+
+.nav.navbar
+  background themecolour2
+  text-align left
+  color #fff
+
+  ul.navbar-nav
+    margin-left 30px
+
+  img
+    width: 36px;
+    height: 36px;
+
+  li
+    display inline-block
+
+  a
+    display inline-block
+    color #fff
+    text-decoration none
+
+    &:hover
+      text-decoration none
+
+.main-content
+  margin 50px auto
+  max-width 600px
+
+  p
+    line-height 1.6
+    margin-bottom 1.7em
+
+.footer
+  margin 50px auto
+  max-width 600px
+  border-top 1px solid #444
+  padding 20px 0
+
+  p
+    color fontcolour
+    font-size 12px
+
+#dice-throws-outer
+  max-width: 550px
+  margin-top 30px
+
+.dice-throw
+  margin 3px
+  background-color dicerolls
+  padding 6px
+  border-radius 50%
+  display inline-block
+
+  .dice-throw-inner
+    width 22px
+    display inline-block
+    text-align center
+    color dicerollfont
+    font-weight bold
+
+
+#seed-words-inner
+  display inline-block
+  padding 30px
+
+  #seed-word
+    padding 3px
+
+.title
+  font-weight: bold
+  margin-top 10px
+
+.btn.throw-dice
+  width: 36px;
+  margin: 5px;
+  padding: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+.btn.throw-dice.wide
+  width: 88px;
+
+#modal-privatekeys
+ .modal-dialog
+    max-width 700px
+
+.modal-content
+  padding 30px
+
+.highlight
+  text-align center
+  background-color hovercolour
+  padding 10px
+
+.helpicon
+  border-radius 50%
+  background-color rgb(86, 61, 124)
+  color #fff
+  display: inline-block;
+  width 24px
+  text-align center
+  font-weight bold
+  height 24px
+  float right
+
+.hidden
+  display none
+
+.btn.hidden
+  display none
+
+.icon
+  width 32px
+  height 32px
+
+#progress-bar-outer
+  margin-top 10px
+  margin-bottom 10px
+
+  #progress-bar
+    width 1px
+    background-color progressgreen
+    height 1em
+    border-radius 2px
+
+  #progress-percent
+    float right
+    color #999
+    font-size 0.9em
+
+button#reset
+  float right
+
+#completion-check
+
+  img
+    width 100px
+    height 100px
+    display inline-block
+
+  div
+    display inline-block
+
+.tab-header
+  height 100px
+  margin-top 20px
+  margin-bottom 10px
+
+  .header-icon
+    float left
+
+    img
+      width 100px
+      height 100px
+      margin-right 30px
+
+    h3
+      font-weight bold
+
+.tab-pane
+  margin-top 30px
+
+.small-font
+  font-size 0.9em
+
+.can-wrap
+  overflow-wrap break-word
+
+.entropy-source-chooser-outer
+  padding 20px
+  min-height 23.5em
+  font-size 0.8em
+  text-align center
+
+  img
+    width 50px
+    height 50px
+
+  button
+    width calc(100% - 20px)
+    margin 10px
+
+.entropy-source-chooser-outer:hover
+    background-color hovercolour
+    transition: 0.3s all ease-in-out;
+
+    .btn-primary:not(.disabled)
+      color themecolour1
+      background-color #fff
+      border-color themecolour1
+
+    .btn-primary.disabled:hover
+      background-color white
+      border-color lightgray
+      color lightgray
+
+button.btn-primary
+  color #fff
+  background-color themecolour1
+  border-color themecolour1
+
+button.btn-primary:hover,
+button.btn-primary:not(:disabled):not(.disabled):active
+  color themecolour1
+  background-color #fff
+  border-color themecolour1
+
+button.btn-primary.disabled
+  background-color white
+  border-color lightgray
+  color lightgray
+
+button.btn-primary.disabled:hover
+  border-color lightgray
+  color lightgray
+
+.btn.btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+.btn.btn-outline-primary:focus
+      box-shadow: 0 0 0 .2rem rgba(177, 124, 236, 0.5);
+
+.btn.btn-outline-primary
+  color themecolour1
+  background-color white
+  border-color themecolour1
+
+.btn.btn-outline-primary:hover,
+.btn.btn-outline-primary:not(:disabled):not(.disabled):active
+  color white
+  background-color themecolour1
+  border-color themecolour1
+
+.btn.btn-outline-primary.disabled
+  background-color lightgray
+  border-color lightgray
+  color white
+
+.btn.btn-outline-primary.disabled:hover
+  border-color lightgray
+  color lightgray
+
+.btn-outline-warning:hover
+  color white
+
+#home
+  .tab-header
+    min-height 10em
+.config-chooser
+  cursor pointer
+
+#import-seed-words textarea
+  resize none
+  padding 1em
+  border-color lightgray
+
+.config-chooser.disabled
+  div, img
+    opacity 0.3
+
+.navbar-dark .navbar-nav a.nav-link
+  color rgba(255, 255, 255, 0.7)
+  margin-left 30px
+
+.navbar-dark .navbar-nav a.nav-link:hover
+  color #fff
+
+#technical-outer
+  h5
+    font-size 1em
+    font-weight bold
+
+#intro-inner .header-text
+  margin-left 130px
+
+#address-number-outer
+  float right
+  font-size 0.8em
+  color lightgray
+
+#page-faqs li
+  list-style: none
